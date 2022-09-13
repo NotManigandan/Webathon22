@@ -1,24 +1,19 @@
 import XLSX from "xlsx";
 import multer from "multer";
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+  
+        // Uploads is the Upload_folder_name
+        cb(null, "courseUploadFiles")
+    },
+    filename: function (req, file, cb) {
+      const {originalName} = file;
+      cb(null, originalName);
+    }
+  })
+
 
 export function uploadCourse(req, res) {
-
-//     const storage = multer.diskStorage({
-//         destination: (req, file, cb) => {
-//             cb(null, '../courseUploadFiles')
-//         },
-//         filename: (req, file, cb) => {
-//             const { originalname } = file;
-//             cb(null, `${uuid()}-originalname`);
-//         }
-//     });
-    
-// const upload = multer({ storage }); 
-
-// app.post('/upload', , (req, res) => {
-//     return res.json({ status: 'OK', uploaded: req.files.length });
-// });
-
     // var workbook = XLSX.readFile("./courses.xlsx");
     // let worksheet = workbook.Sheets[workbook.SheetNames[0]];
 
@@ -29,5 +24,6 @@ export function uploadCourse(req, res) {
     //     console.log(courseCode);
     //     console.log(courseName);    
     // }
+    res.send("yo");
 }
 

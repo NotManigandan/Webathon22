@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from "axios";
 
-
-
 function Home() {
     useEffect(()=>{
         axios.get("/loginStatus")
@@ -29,10 +27,7 @@ function Home() {
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
             <Link className="nav-link active" aria-current="page" to="/events">Events</Link>
-          </li>
-          
-          
-      
+        </li>
           <li className="nav-item">
             <Link className="nav-link" to="/login">Login</Link>
           </li>
@@ -44,12 +39,7 @@ function Home() {
     </div>
   </nav>
 
-            <div className="upload-se">
-            <form action = "/"
-            method = "POST"
-            encType="multipart"> < input type = "file" / >
-            </form>
-            </div>
+            
     </div>
 )
 }
