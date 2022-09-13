@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from "axios";
-
+import Course from '../course/Course';
+import "./homeCSS.css";
 function Home() {
-    
+    const [courses, setCourses] = useState([]);
+    const [pref, setPref] = useState([]);
     const [file, setFile] = useState();
     const [fileName, setFileName] = useState("");
     function handleSubmit2(event){
@@ -21,9 +23,20 @@ function Home() {
         console.log(response.data);
         });
     }
+    function handleSubmit3(event){
+        alert("Preferences Submitted");
+        event.preventDefault();
+    }
     function FHandler(event) {
         setFile(event.target.files[0]);
     }
+    useEffect(()=>{
+        axios.get("/courses")
+        .then((response)=>{
+          setCourses(response.data);
+        })
+      },[])
+
     useEffect(()=>{
         axios.get("/loginStatus")
         .then((response)=>{
@@ -74,7 +87,7 @@ function Home() {
             ) : (
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/events">Login</Link>
+                  <Link className="nav-link active" aria-current="page" to="/login">Login</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/register">Register</Link>
@@ -91,7 +104,41 @@ function Home() {
              <button type="submit" onClick={handleSubmit2}>Upload</button>
             </form>
             {fileName}
-    </div>: null}
+    </div>: 
+    <div className='courses'>
+        <table>
+          <thead>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Lecture Hours</th>
+            <th>Tutorial Hours</th>
+            <th>Practical Hours</th>
+            <th>J Project Hours</th>
+            <th>Credits</th>
+            <th>Choose</th>
+          </thead>
+          {courses.map((course) => {
+            return (
+              <Course
+                key={course._id}
+                id={course._id}
+                code={course.code}
+                name={course.name}
+                lhours={course.lhours}
+                thours={course.thours}
+                phours={course.phours}
+                jhours={course.jhours}
+                credits={course.credits}
+                isAdmin={isAdmin}
+                setPref={setPref}
+              />
+            )
+          })}
+        </table>
+        {(!isAdmin)? <button type="submit" id="new-button" onClick={handleSubmit3}>Add Preferences</button> : null}
+      </div>
+    
+    }
   
     <div>
 

@@ -1,4 +1,5 @@
 import Course from "../models/course.js";
+import Faculty from "../models/faculty.js";
 
 export function getCourses(req,res){
         Course.find({}, (err,result)=>{
@@ -9,4 +10,21 @@ export function getCourses(req,res){
             }
         })
     
+}
+
+
+export function addCourses(req,res){
+    const data = req.body;
+    const newCourse = new Course(data);
+    newCourse.save();
+   
+
+}
+
+export function addFaculty(req,res){
+    const data = req.body;
+    const newFaculty = new Faculty(data);
+    newFaculty.save();
+   
+
 }

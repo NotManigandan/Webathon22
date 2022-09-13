@@ -16,6 +16,18 @@ function Faculty() {
     
   const handleSubmit = (e) => {
     e.preventDefault();
+    const obj = {
+        eid: fid,
+        name: fName,
+        desig: desig,
+        phone: phone,
+        school: school,
+        email: email
+      }
+      axios.post("/faculty",obj)
+      .then((response)=>{
+        console.log(response.data);
+      })
     alert("Added Faculty")
   }
 
@@ -62,7 +74,7 @@ function Faculty() {
         </field>
         <field className="inputField">
           <label>Designation : </label>
-          <input type="number" value={ desig } onChange={ (e) => setDesig(e.target.value) } />
+          <input type="text" value={ desig } onChange={ (e) => setDesig(e.target.value) } />
         </field>
         <field className="inputField">
           <label>Phone number : </label>
@@ -70,11 +82,11 @@ function Faculty() {
         </field>
         <field className="inputField">
           <label>School : </label>
-          <input type="number" value={ school } onChange={ (e) => setSchool(e.target.value) } />
+          <input type="text" value={ school } onChange={ (e) => setSchool(e.target.value) } />
         </field>
         <field className="inputField">
           <label>Email : </label>
-          <input type="number" value={ email } onChange={ (e) => setEmail(e.target.value) } />
+          <input type="text" value={ email } onChange={ (e) => setEmail(e.target.value) } />
         </field>
         <button type="submit" value="Add course" id="form-button" onClick={ handleSubmit }>Add</button>
       </form>

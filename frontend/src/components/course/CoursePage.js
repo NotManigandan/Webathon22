@@ -26,6 +26,21 @@ function CoursePage() {
     
   const handleSubmit = (e) => {
     e.preventDefault();
+    const obj = {
+      code: courseCode,
+      name: courseName,
+      lhours: lectureHours,
+      thours: tutorialHours,
+      phours: practicalHours,
+      jhours: projectHours,
+      credits: credits,
+      wish: 0
+    }
+    axios.post("/courses",obj)
+    .then((response)=>{
+      console.log(response.data);
+    })
+    setUpdates(!updates);
     alert("Added Course");
   }
 
