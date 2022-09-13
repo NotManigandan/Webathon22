@@ -10,6 +10,8 @@ import failRoutes from "./routes/fail.js";
 import authRoutes from "./routes/auth.js";
 import uploadRoutes from "./routes/upload.js";
 import courseRoutes from "./routes/course.js";
+import wishUploadRoutes from "./routes/uploadWish.js";
+import facultyUploadRoutes from "./routes/uploadFaculty.js";
 
 dotenv.config();
 const app = express();
@@ -33,6 +35,8 @@ app.use(authRoutes);
 app.use(failRoutes);
 app.use(uploadRoutes);
 app.use(courseRoutes);
+app.use(wishUploadRoutes);
+app.use(facultyUploadRoutes);
 
 const CONNECTION_URL = process.env.DATABASE;
 mongoose.connect(CONNECTION_URL);

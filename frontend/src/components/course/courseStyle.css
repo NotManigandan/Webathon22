@@ -1,3 +1,8 @@
+h2 {
+    text-align: center;
+    margin: 40px auto 10px auto;
+}
+
 field.inputField {
     display: grid;
     gap: 4px;
@@ -13,9 +18,49 @@ form {
     display: grid;
     gap: 20px;
     margin: 0 auto;
-    width: 75%;
+    width: 91%;
 }
 
-#add-course-submit {
-    width: 20%;
+form .form-submit {
+    width: 100%;
+}
+
+form #form-button {
+    width: 25%;
+    margin: 30px auto;
+}
+
+table {
+    margin: 50px auto;
+}
+
+.course-info {
+    border: solid 2px black;
+    width: 75%;
+    font-size: 16px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 4;
+}
+
+thead {
+    border: solid 2px black;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+}
+
+.course-info td,
+th {
+    margin-right: 15px;
+    padding: 20px 37px;
+}
+
+tr:nth-child(even) {
+    background-color: #d3d3d3;
+}
+
+tr:hover {
+    background-color: #666666;
+    color: #fff
 }

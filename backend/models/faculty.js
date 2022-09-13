@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const facultySchema = mongoose.Schema({
-    slno: Number,
     eid: Number,
     name: String,
     desig: String,

@@ -26,6 +26,7 @@ function CoursePage() {
     
   const handleSubmit = (e) => {
     e.preventDefault();
+    alert("Added Course");
   }
 
     function handleSubmit2(event){
@@ -42,6 +43,7 @@ function CoursePage() {
         axios.post(url, formData, config).then((response) => {
         console.log(response.data);
         });
+        alert("Uploaded Courses");
     }
     function FHandler(event) {
         setFile(event.target.files[0]);
@@ -50,9 +52,10 @@ function CoursePage() {
     <div>
 
         <div className="upload-se">
+        <h2>Upload Course List</h2>
             <form>
              <input type = "file" onChange={FHandler} name="myFile" />
-             <button type="submit" onClick={handleSubmit2}>Upload</button>
+             <button className="form-submit" type="submit" onClick={handleSubmit2}>Upload</button>
             </form>
             {fileName}
         </div>
@@ -87,30 +90,40 @@ function CoursePage() {
           <label>Credits: </label>
           <input type="number" value={ credits } onChange={ (e) => setCredits(e.target.value) } />
         </field>
-        <button type="submit" value="Add course" id="add-course-submit" onClick={ handleSubmit }>Add</button>
+        <button type="submit" value="Add course" id="form-button" onClick={ handleSubmit }>Add</button>
       </form>
     </div>
     
-      <div className='courses'>
-            {courses.map((course)=>{
-            return(
-            <Course 
+    <div className='courses'>
+        <table>
+          <thead>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Lecture Hours</th>
+            <th>Tutorial Hours</th>
+            <th>Practical Hours</th>
+            <th>J Project Hours</th>
+            <th>Credits</th>
+          </thead>
+          {courses.map((course) => {
+            return (
+              <Course
                 key={course._id}
                 id={course._id}
-                code= {course.code}
-                name= {course.name}
-                lhours= {course.lhours}
+                code={course.code}
+                name={course.name}
+                lhours={course.lhours}
                 thours={course.thours}
                 phours={course.phours}
                 jhours={course.jhours}
                 credits={course.credits}
-                wish={course.wish}
-                updates = {updates}
+                updates={updates}
                 updater={setUpdates}
-            />
+              />
             )
-            })}
-        </div>
+          })}
+        </table>
+      </div>
     </div>
   )
 }

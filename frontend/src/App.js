@@ -6,6 +6,7 @@ import Home from "./components/home/Home";
 import Login from "./components/login/Login";
 import Redirect from "./components/Redirect";
 import Register from "./components/register/Register";
+import Faculty from "./components/faculty/Faculty";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<Home />} />
       <Route path="/course" element={<CoursePage />} />
+      <Route path="/faculty" element={<Faculty />} />
     </Routes>
     </Router>
   );
