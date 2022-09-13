@@ -9,6 +9,7 @@ import User from "./models/user.js";
 import failRoutes from "./routes/fail.js";
 import authRoutes from "./routes/auth.js";
 import uploadRoutes from "./routes/upload.js";
+import courseRoutes from "./routes/course.js";
 
 dotenv.config();
 const app = express();
@@ -31,6 +32,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(authRoutes);
 app.use(failRoutes);
 app.use(uploadRoutes);
+app.use(courseRoutes);
 
 const CONNECTION_URL = process.env.DATABASE;
 mongoose.connect(CONNECTION_URL);

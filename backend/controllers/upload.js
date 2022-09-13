@@ -1,29 +1,32 @@
 import XLSX from "xlsx";
-import multer from "multer";
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-  
-        // Uploads is the Upload_folder_name
-        cb(null, "courseUploadFiles")
-    },
-    filename: function (req, file, cb) {
-      const {originalName} = file;
-      cb(null, originalName);
-    }
-  })
-
+import { name } from "../routes/upload.js"
+import path from 'path';
+import { fileURLToPath } from 'url';
+import Course from "../models/course.js";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export function uploadCourse(req, res) {
-    // var workbook = XLSX.readFile("./courses.xlsx");
-    // let worksheet = workbook.Sheets[workbook.SheetNames[0]];
-
-    // for (let index = 1; index < 5; index++) {
-    //     const courseCode = worksheet[`A${index}`].v;
-    //     const courseName = worksheet[`B${index}`].v;
-
-    //     console.log(courseCode);
-    //     console.log(courseName);    
-    // }
-    res.send("yo");
+  //console.log(name);
+  var workbook = XLSX.readFile(path.join(__dirname, "..", "courseUploadFiles", name));
+  const sheets = workbook.SheetNames
+  for (let i = 0; i < sheets.length; i++) {
+    const temp = XLSX.utils.sheet_to_json(
+      workbook.Sheets[workbook.SheetNames[i]])
+    temp.forEach((res) => {
+      const data = {
+        code: res['Course Code'],
+        name: res['Course Name'],
+        lhours: res['Lecture hours'],
+        phours: res['Practical hours'],
+        thours: res['Tutorial hours'],
+        jhours: res['J Project hours'],
+        credits: res.Credits,
+        wish: 0
+      };
+      const newCourse = new Course(data);
+      newCourse.save();
+    })
+  }
+  //console.log(data)
 }
-
