@@ -1,5 +1,6 @@
 # Webathon22
 Frontend folder: npm install
+
 npm start
 
 Backend folder: nodemon server.js
